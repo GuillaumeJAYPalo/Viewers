@@ -159,7 +159,6 @@
     ]
   },
   "resolutions": {
-    "**/@babel/runtime": "^7.20.13",
     "commander": "8.3.0",
     "nth-check": "^2.1.1",
     "trim-newlines": "^5.0.0",
@@ -167,5 +166,6 @@
     "trim": "^1.0.0",
     "package-json": "^8.1.0",
     "sharp": "^0.32.6"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }

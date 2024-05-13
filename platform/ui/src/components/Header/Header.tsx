@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 
+import AllisonLogo from '../../assets/logoAllisone.png';
 import NavBar from '../NavBar';
-import Svg from '../Svg';
 import Icon from '../Icon';
 import IconButton from '../IconButton';
 import Dropdown from '../Dropdown';
@@ -56,7 +56,13 @@ function Header({
               />
             )}
             <div className="ml-1">
-              {WhiteLabeling?.createLogoComponentFn?.(React, props) || <Svg name="logo-ohif" />}
+              <img
+                src={AllisonLogo}
+                alt="Logo Allisone"
+                width="138px"
+                height="28px"
+              ></img>
+              {/* {WhiteLabeling?.createLogoComponentFn?.(React, props) || <Svg name="logo-ohif" />} */}
             </div>
           </div>
         </div>
