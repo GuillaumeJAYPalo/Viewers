@@ -7,10 +7,15 @@ import LegacyButtonGroup from '../LegacyButtonGroup';
 import Typography from '../Typography';
 import Select from '../Select';
 
-const StudyListPagination = ({ onChangePage, currentPage, perPage, onChangePerPage }) => {
+const StudyListPagination = ({
+  onChangePage,
+  currentPage,
+  perPage,
+  onChangePerPage,
+}) => {
   const { t } = useTranslation('StudyList');
 
-  const navigateToPage = page => {
+  const navigateToPage = (page) => {
     const toPage = page < 1 ? 1 : page;
     onChangePage(toPage);
   };
@@ -20,14 +25,16 @@ const StudyListPagination = ({ onChangePage, currentPage, perPage, onChangePerPa
     { value: '50', label: '50' },
     { value: '100', label: '100' },
   ];
-  const [selectedRange, setSelectedRange] = useState(ranges.find(r => r.value === perPage));
-  const onSelectedRange = selectedRange => {
+  const [selectedRange, setSelectedRange] = useState(
+    ranges.find((r) => r.value === perPage)
+  );
+  const onSelectedRange = (selectedRange) => {
     setSelectedRange(selectedRange);
     onChangePerPage(selectedRange.value);
   };
 
   return (
-    <div className="bg-black py-10">
+    <div className="py-10">
       <div className="container relative m-auto px-8">
         <div className="flex justify-between">
           <div className="flex items-center">
@@ -43,18 +50,20 @@ const StudyListPagination = ({ onChangePage, currentPage, perPage, onChangePerPa
               hideSelectedOptions={true}
               onChange={onSelectedRange}
             />
-            <Typography className="text-base opacity-60">{t('Results per page')}</Typography>
+            <Typography className="text-base opacity-60 text-primary-dark">
+              {t('Results per page')}
+            </Typography>
           </div>
           <div className="">
             <div className="flex items-center">
-              <Typography className="mr-4 text-base opacity-60">
+              <Typography className="mr-4 text-base opacity-60 text-primary-dark">
                 {t('Page')} {currentPage}
               </Typography>
               {/* TODO Revisit design of LegacyButtonGroup later - for now use LegacyButton for its children.*/}
               <LegacyButtonGroup>
                 <LegacyButton
                   size="initial"
-                  className="px-4 py-2 text-base"
+                  className="px-4 py-2 text-base text-primary-dark"
                   color="translucent"
                   border="primary"
                   variant="outlined"
@@ -64,7 +73,7 @@ const StudyListPagination = ({ onChangePage, currentPage, perPage, onChangePerPa
                 </LegacyButton>
                 <LegacyButton
                   size="initial"
-                  className="py-2 px-2 text-base"
+                  className="py-2 px-2 text-base text-primary-dark"
                   color="translucent"
                   border="primary"
                   variant="outlined"
@@ -74,7 +83,7 @@ const StudyListPagination = ({ onChangePage, currentPage, perPage, onChangePerPa
                 </LegacyButton>
                 <LegacyButton
                   size="initial"
-                  className="py-2 px-4 text-base"
+                  className="py-2 px-4 text-base text-primary-dark"
                   color="translucent"
                   border="primary"
                   variant="outlined"

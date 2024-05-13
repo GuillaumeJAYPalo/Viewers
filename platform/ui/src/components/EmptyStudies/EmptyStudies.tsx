@@ -11,14 +11,8 @@ const EmptyStudies = ({ className }) => {
   const { t } = useTranslation('StudyList');
   return (
     <div className={classnames('inline-flex flex-col items-center', className)}>
-      <Icon
-        name="magnifier"
-        className="mb-4"
-      />
-      <Typography
-        className="text-primary-light"
-        variant="h5"
-      >
+      <Icon name="info" className="mb-4" />
+      <Typography className="text-primary-dark" variant="h5">
         {t('No studies available')}
       </Typography>
     </div>

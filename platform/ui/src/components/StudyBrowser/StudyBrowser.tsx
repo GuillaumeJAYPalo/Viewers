@@ -8,9 +8,9 @@ import LegacyButton from '../LegacyButton';
 import ThumbnailList from '../ThumbnailList';
 import { StringNumber } from '../../types';
 
-const getTrackedSeries = displaySets => {
+const getTrackedSeries = (displaySets) => {
   let trackedSeries = 0;
-  displaySets.forEach(displaySet => {
+  displaySets.forEach((displaySet) => {
     if (displaySet.isTracked) {
       trackedSeries++;
     }
@@ -35,9 +35,16 @@ const StudyBrowser = ({
   const { customizationService } = servicesManager?.services || {};
 
   const getTabContent = () => {
-    const tabData = tabs.find(tab => tab.name === activeTabName);
+    const tabData = tabs.find((tab) => tab.name === activeTabName);
     return tabData.studies.map(
-      ({ studyInstanceUid, date, description, numInstances, modalities, displaySets }) => {
+      ({
+        studyInstanceUid,
+        date,
+        description,
+        numInstances,
+        modalities,
+        displaySets,
+      }) => {
         const isExpanded = expandedStudyInstanceUIDs.includes(studyInstanceUid);
         return (
           <React.Fragment key={studyInstanceUid}>
@@ -71,7 +78,7 @@ const StudyBrowser = ({
   return (
     <React.Fragment>
       <div
-        className="w-100 border-secondary-light bg-primary-dark flex h-16 flex-row items-center justify-center border-b p-4"
+        className="w-100 border-secondary-light flex h-16 flex-row items-center justify-center border-b p-4"
         data-cy={'studyBrowser-panel'}
       >
         {/* TODO Revisit design of LegacyButtonGroup later - for now use LegacyButton for its children.*/}
@@ -80,25 +87,26 @@ const StudyBrowser = ({
           color="secondary"
           splitBorder={false}
         >
-          {tabs.map(tab => {
+          {tabs.map((tab) => {
             const { name, label, studies } = tab;
             const isActive = activeTabName === name;
             const isDisabled = !studies.length;
             // Apply the contrasting color for brighter button color visibility
-            const classStudyBrowser = customizationService?.getModeCustomization(
-              'class:StudyBrowser'
-            ) || {
-              true: 'default',
-              false: 'default',
-            };
+            const classStudyBrowser =
+              customizationService?.getModeCustomization(
+                'class:StudyBrowser'
+              ) || {
+                true: 'default',
+                false: 'default',
+              };
             const color = classStudyBrowser[`${isActive}`];
             return (
               <LegacyButton
                 key={name}
-                className={'min-w-18 p-2 text-base text-white'}
+                className={'min-w-18 p-2 text-base'}
                 size="initial"
                 color={color}
-                bgColor={isActive ? 'bg-primary-main' : 'bg-black'}
+                bgColor={isActive ? 'bg-primary-main' : 'bg-secondary-main'}
                 onClick={() => {
                   onClickTab(name);
                 }}
@@ -146,8 +154,11 @@ StudyBrowser.propTypes = {
               seriesNumber: StringNumber,
               numInstances: PropTypes.number,
               description: PropTypes.string,
-              componentType: PropTypes.oneOf(['thumbnail', 'thumbnailTracked', 'thumbnailNoImage'])
-                .isRequired,
+              componentType: PropTypes.oneOf([
+                'thumbnail',
+                'thumbnailTracked',
+                'thumbnailNoImage',
+              ]).isRequired,
               isTracked: PropTypes.bool,
               /**
                * Data the thumbnail should expose to a receiving drop target. Use a matching

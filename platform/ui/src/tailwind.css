@@ -1,18 +1,33 @@
 /* IMPORT CUSTOM FONT */
-@import url('https://fonts.googleapis.com/css?family=Inter:100,300,400,500,700&display=swap');
+/*@import url('https://fonts.googleapis.com/css?family=Inter:100,300,400,500,700&display=swap');*/
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
+/* @layer base {
   html {
     font-family: 'Inter', sans-serif;
   }
+} */
+@font-face {
+  font-family: 'Nexa';
+  src:
+    local('Nexa'),
+    url('./fonts/Nexa/Nexa-Heavy.ttf') format('truetype');
+}
+
+body,
+html {
+  font-family: 'Nexa', sans-serif;
 }
 
 body {
-  background-color: #000;
+  background-color: #ffff;
+}
+
+* {
+  @apply text-primary-dark;
 }
 
 /* Truncate 2 lines utility */

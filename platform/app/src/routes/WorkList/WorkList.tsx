@@ -67,14 +67,15 @@ function WorkList({
   const navigate = useNavigate();
   const STUDIES_LIMIT = 101;
   const queryFilterValues = _getQueryFilterValues(searchParams);
-  const [sessionQueryFilterValues, updateSessionQueryFilterValues] = useSessionStorage({
-    key: 'queryFilterValues',
-    defaultValue: queryFilterValues,
-    // ToDo: useSessionStorage currently uses an unload listener to clear the filters from session storage
-    // so on systems that do not support unload events a user will NOT be able to alter any existing filter
-    // in the URL, load the page and have it apply.
-    clearOnUnload: true,
-  });
+  const [sessionQueryFilterValues, updateSessionQueryFilterValues] =
+    useSessionStorage({
+      key: 'queryFilterValues',
+      defaultValue: queryFilterValues,
+      // ToDo: useSessionStorage currently uses an unload listener to clear the filters from session storage
+      // so on systems that do not support unload events a user will NOT be able to alter any existing filter
+      // in the URL, load the page and have it apply.
+      clearOnUnload: true,
+    });
   const [filterValues, _setFilterValues] = useState({
     ...defaultFilterValues,
     ...sessionQueryFilterValues,
@@ -92,7 +93,9 @@ function WorkList({
   const shouldUseDefaultSort = sortBy === '' || !sortBy;
   const sortModifier = sortDirection === 'descending' ? 1 : -1;
   const defaultSortValues =
-    shouldUseDefaultSort && canSort ? { sortBy: 'studyDate', sortDirection: 'ascending' } : {};
+    shouldUseDefaultSort && canSort
+      ? { sortBy: 'studyDate', sortDirection: 'ascending' }
+      : {};
   const sortedStudies = studies;
 
   if (canSort) {
@@ -129,7 +132,7 @@ function WorkList({
     return isLoadingData || expandedRows.length > 0;
   }, [isLoadingData, expandedRows]);
 
-  const setFilterValues = val => {
+  const setFilterValues = (val) => {
     if (filterValues.pageNumber === val.pageNumber) {
       val.pageNumber = 1;
     }
@@ -138,12 +141,13 @@ function WorkList({
     setExpandedRows([]);
   };
 
-  const onPageNumberChange = newPageNumber => {
+  const onPageNumberChange = (newPageNumber) => {
     const oldPageNumber = filterValues.pageNumber;
     const rollingPageNumberMod = Math.floor(101 / filterValues.resultsPerPage);
     const rollingPageNumber = oldPageNumber % rollingPageNumberMod;
     const isNextPage = newPageNumber > oldPageNumber;
-    const hasNextPage = Math.max(rollingPageNumber, 1) * resultsPerPage < numOfStudies;
+    const hasNextPage =
+      Math.max(rollingPageNumber, 1) * resultsPerPage < numOfStudies;
 
     if (isNextPage && !hasNextPage) {
       return;
@@ -152,7 +156,7 @@ function WorkList({
     setFilterValues({ ...filterValues, pageNumber: newPageNumber });
   };
 
-  const onResultsPerPageChange = newResultsPerPage => {
+  const onResultsPerPageChange = (newResultsPerPage) => {
     setFilterValues({
       ...filterValues,
       pageNumber: 1,
@@ -162,9 +166,9 @@ function WorkList({
 
   // Set body style
   useEffect(() => {
-    document.body.classList.add('bg-black');
+    document.body.classList.add('bg-white');
     return () => {
-      document.body.classList.remove('bg-black');
+      document.body.classList.remove('bg-white');
     };
   }, []);
 
@@ -175,13 +179,16 @@ function WorkList({
     }
 
     const queryString = {};
-    Object.keys(defaultFilterValues).forEach(key => {
+    Object.keys(defaultFilterValues).forEach((key) => {
       const defaultValue = defaultFilterValues[key];
       const currValue = debouncedFilterValues[key];
 
       // TODO: nesting/recursion?
       if (key === 'studyDate') {
-        if (currValue.startDate && defaultValue.startDate !== currValue.startDate) {
+        if (
+          currValue.startDate &&
+          defaultValue.startDate !== currValue.startDate
+        ) {
           queryString.startDate = currValue.startDate;
         }
         if (currValue.endDate && defaultValue.endDate !== currValue.endDate) {
@@ -208,7 +215,7 @@ function WorkList({
 
   // Query for series information
   useEffect(() => {
-    const fetchSeries = async studyInstanceUid => {
+    const fetchSeries = async (studyInstanceUid) => {
       try {
         const series = await dataSource.query.series.search(studyInstanceUid);
         seriesInStudiesMap.set(studyInstanceUid, sortBySeriesDate(series));
@@ -245,7 +252,7 @@ function WorkList({
   const offsetAndTake = offset + resultsPerPage;
   const tableDataSource = sortedStudies.map((study, key) => {
     const rowKey = key + 1;
-    const isExpanded = expandedRows.some(k => k === rowKey);
+    const isExpanded = expandedRows.some((k) => k === rowKey);
     const {
       studyInstanceUid,
       accession,
@@ -260,7 +267,9 @@ function WorkList({
     const studyDate =
       date &&
       moment(date, ['YYYYMMDD', 'YYYY.MM.DD'], true).isValid() &&
-      moment(date, ['YYYYMMDD', 'YYYY.MM.DD']).format(t('Common:localDateFormat', 'MMM-DD-YYYY'));
+      moment(date, ['YYYYMMDD', 'YYYY.MM.DD']).format(
+        t('Common:localDateFormat', 'MMM-DD-YYYY')
+      );
     const studyTime =
       time &&
       moment(time, ['HH', 'HHmm', 'HHmmss', 'HHmmss.SSS']).isValid() &&
@@ -342,7 +351,7 @@ function WorkList({
           }}
           seriesTableDataSource={
             seriesInStudiesMap.has(studyInstanceUid)
-              ? seriesInStudiesMap.get(studyInstanceUid).map(s => {
+              ? seriesInStudiesMap.get(studyInstanceUid).map((s) => {
                   return {
                     description: s.description || '(empty)',
                     seriesNumber: s.seriesNumber ?? '',
@@ -371,7 +380,10 @@ function WorkList({
             ).map((mode, i) => {
               const modalitiesToCheck = modalities.replaceAll('/', '\\');
 
-              const { valid: isValidMode, description: invalidModeDescription } = mode.isValidMode({
+              const {
+                valid: isValidMode,
+                description: invalidModeDescription,
+              } = mode.isValidMode({
                 modalities: modalitiesToCheck,
                 study,
               });
@@ -394,7 +406,7 @@ function WorkList({
                     to={`${dataPath ? '../../' : ''}${mode.routeName}${
                       dataPath || ''
                     }?${query.toString()}`}
-                    onClick={event => {
+                    onClick={(event) => {
                       // In case any event bubbles up for an invalid mode, prevent the navigation.
                       // For example, the event bubbles up when the icon embedded in the disabled button is clicked.
                       if (!isValidMode) {
@@ -410,7 +422,7 @@ function WorkList({
                       disabled={!isValidMode}
                       startIconTooltip={
                         !isValidMode ? (
-                          <div className="font-inter flex w-[206px] whitespace-normal text-left text-xs font-normal text-white	">
+                          <div className="font-inter flex w-[206px] whitespace-normal text-left text-xs font-normal text-white">
                             {invalidModeDescription}
                           </div>
                         ) : null
@@ -423,7 +435,9 @@ function WorkList({
                       } // launch-arrow | launch-info
                       onClick={() => {}}
                       dataCY={`mode-${mode.routeName}-${studyInstanceUid}`}
-                      className={isValidMode ? 'text-[13px]' : 'bg-[#222d44] text-[13px]'}
+                      className={
+                        isValidMode ? 'text-[13px]' : 'bg-white text-[13px]'
+                      }
                     >
                       {mode.displayName}
                     </Button>
@@ -435,7 +449,9 @@ function WorkList({
         </StudyListExpandedRow>
       ),
       onClickRow: () =>
-        setExpandedRows(s => (isExpanded ? s.filter(n => rowKey !== n) : [...s, rowKey])),
+        setExpandedRows((s) =>
+          isExpanded ? s.filter((n) => rowKey !== n) : [...s, rowKey]
+        ),
       isExpanded,
     };
   });
@@ -464,13 +480,14 @@ function WorkList({
           title: t('UserPreferencesModal:User preferences'),
           content: UserPreferences,
           contentProps: {
-            hotkeyDefaults: hotkeysManager.getValidHotkeyDefinitions(hotkeyDefaults),
+            hotkeyDefaults:
+              hotkeysManager.getValidHotkeyDefinitions(hotkeyDefaults),
             hotkeyDefinitions,
             onCancel: hide,
             currentLanguage: currentLanguage(),
             availableLanguages,
             defaultLanguage,
-            onSubmit: state => {
+            onSubmit: (state) => {
               if (state.language.value !== currentLanguage().value) {
                 i18n.changeLanguage(state.language.value);
               }
@@ -489,7 +506,9 @@ function WorkList({
       icon: 'power-off',
       title: t('Header:Logout'),
       onClick: () => {
-        navigate(`/logout?redirect_uri=${encodeURIComponent(window.location.href)}`);
+        navigate(
+          `/logout?redirect_uri=${encodeURIComponent(window.location.href)}`
+        );
       },
     });
   }
@@ -525,7 +544,7 @@ function WorkList({
     customizationService.get('ohif.dataSourceConfigurationComponent') ?? {};
 
   return (
-    <div className="flex h-screen flex-col bg-black">
+    <div className="flex h-screen flex-col bg-white">
       <Header
         isSticky
         menuOptions={menuOptions}
@@ -534,7 +553,7 @@ function WorkList({
         showPatientInfo={PatientInfoVisibility.DISABLED}
       />
       {/* <InvestigationalUseDialog dialogConfiguration={appConfig?.investigationalUseDialog} /> */}
-      <div className="ohif-scrollbar ohif-scrollbar-stable-gutter flex grow flex-col overflow-y-auto sm:px-5">
+      <div className="ohif-scrollbar ohif-scrollbar-stable-gutter flex grow flex-col overflow-y-auto sm:px-5 bg-white">
         <StudyListFilter
           numOfStudies={pageNumber * resultsPerPage > 100 ? 101 : numOfStudies}
           filtersMeta={filtersMeta}
@@ -544,7 +563,9 @@ function WorkList({
           isFiltering={isFiltering(filterValues, defaultFilterValues)}
           onUploadClick={uploadProps ? () => show(uploadProps) : undefined}
           getDataSourceConfigurationComponent={
-            dataSourceConfigurationComponent ? () => dataSourceConfigurationComponent() : undefined
+            dataSourceConfigurationComponent
+              ? () => dataSourceConfigurationComponent()
+              : undefined
           }
         />
         {hasStudies ? (
@@ -625,7 +646,9 @@ function _getQueryFilterValues(params) {
       endDate: params.get('enddate') || null,
     },
     description: params.get('description'),
-    modalities: params.get('modalities') ? params.get('modalities').split(',') : [],
+    modalities: params.get('modalities')
+      ? params.get('modalities').split(',')
+      : [],
     accession: params.get('accession'),
     sortBy: params.get('sortby'),
     sortDirection: params.get('sortdirection'),
@@ -637,7 +660,7 @@ function _getQueryFilterValues(params) {
 
   // Delete null/undefined keys
   Object.keys(queryFilterValues).forEach(
-    key => queryFilterValues[key] == null && delete queryFilterValues[key]
+    (key) => queryFilterValues[key] == null && delete queryFilterValues[key]
   );
 
   return queryFilterValues;
@@ -649,7 +672,9 @@ function _sortStringDates(s1, s2, sortModifier) {
   const s2Date = moment(s2.date, ['YYYYMMDD', 'YYYY.MM.DD'], true);
 
   if (s1Date.isValid() && s2Date.isValid()) {
-    return (s1Date.toISOString() > s2Date.toISOString() ? 1 : -1) * sortModifier;
+    return (
+      (s1Date.toISOString() > s2Date.toISOString() ? 1 : -1) * sortModifier
+    );
   } else if (s1Date.isValid()) {
     return sortModifier;
   } else if (s2Date.isValid()) {

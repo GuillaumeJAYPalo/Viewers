@@ -40,24 +40,33 @@ module.exports = {
       },
 
       primary: {
-        light: '#5acce6',
-        main: '#0944b3',
-        dark: '#090c29',
-        active: '#348cfd',
+        //Item line
+        light: '#fff',
+        main: '#fff',
+        //Allisone Deep blue
+        dark: '#02042d',
+        //Allisone Glossy Pink 20
+        active: '#645dbf',
       },
 
       inputfield: {
         main: '#3a3f99',
         disabled: '#2b166b',
         focus: '#5acce6',
-        placeholder: '#39383f',
+        //Allisone Free Speech Blue
+        placeholder: '#475bc0',
       },
 
       secondary: {
-        light: '#3a3f99',
-        main: '#2b166b',
-        dark: '#041c4a',
-        active: '#1f1f27',
+        //Allisone Lavender
+        //Item border line
+        light: '#cd35ed',
+        //Allisone Medium Purple
+        main: '#b16cea',
+        //Allisone
+        dark: '#5532fa',
+        //Allisone Medium Purple
+        active: '#b16cea',
       },
 
       common: {
@@ -201,7 +210,7 @@ module.exports = {
         900: '#702459',
       },
     },
-    backgroundColor: theme => theme('colors'),
+    backgroundColor: (theme) => theme('colors'),
     backgroundPosition: {
       bottom: 'bottom',
       center: 'center',
@@ -218,14 +227,15 @@ module.exports = {
       cover: 'cover',
       contain: 'contain',
     },
-    borderColor: theme => ({
+    borderColor: (theme) => ({
       ...theme('colors'),
       DEFAULT: theme('colors.gray.300', 'currentColor'),
     }),
     boxShadow: {
       xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
       sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-      DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+      DEFAULT:
+        '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
       md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
       lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
       xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
@@ -282,7 +292,14 @@ module.exports = {
         '"Noto Color Emoji"',
       ],
       serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
-      mono: ['Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
+      mono: [
+        'Menlo',
+        'Monaco',
+        'Consolas',
+        '"Liberation Mono"',
+        '"Courier New"',
+        'monospace',
+      ],
     },
     fontSize: {
       xs: '0.65rem',
@@ -307,14 +324,14 @@ module.exports = {
       extrabold: '800',
       black: '900',
     },
-    height: theme => ({
+    height: (theme) => ({
       auto: 'auto',
       ...theme('spacing'),
       full: '100%',
       screen: '100vh',
       inherit: 'inherit',
     }),
-    inset: theme => ({
+    inset: (theme) => ({
       ...theme('spacing'),
       0: '0',
       auto: 'auto',
@@ -323,7 +340,7 @@ module.exports = {
       '1/2': '50%',
       'viewport-scrollbar': '1.3rem',
     }),
-    minHeight: theme => ({
+    minHeight: (theme) => ({
       ...theme('spacing'),
       0: '0',
       full: '100%',
@@ -363,7 +380,7 @@ module.exports = {
       ...theme('spacing'),
       ...negative(theme('spacing')),
     }),
-    maxHeight: theme => ({
+    maxHeight: (theme) => ({
       full: '100%',
       screen: '100vh',
       ...theme('spacing'),
@@ -384,7 +401,7 @@ module.exports = {
       ...breakpoints(theme('screens')),
       ...theme('spacing'),
     }),
-    minWidth: theme => ({
+    minWidth: (theme) => ({
       ...theme('spacing'),
       0: '0',
       xs: '2rem',
@@ -445,9 +462,9 @@ module.exports = {
       11: '11',
       12: '12',
     },
-    padding: theme => theme('spacing'),
-    placeholderColor: theme => theme('colors'),
-    stroke: theme => ({
+    padding: (theme) => theme('spacing'),
+    placeholderColor: (theme) => theme('colors'),
+    stroke: (theme) => ({
       ...theme('colors'),
       current: 'currentColor',
     }),
@@ -456,8 +473,8 @@ module.exports = {
       1: '1',
       2: '2',
     },
-    textColor: theme => theme('colors'),
-    width: theme => ({
+    textColor: (theme) => theme('colors'),
+    width: (theme) => ({
       auto: 'auto',
       ...theme('spacing'),
       '1/2': '50%',
@@ -522,7 +539,7 @@ module.exports = {
       40: '40',
       50: '50',
     },
-    gap: theme => theme('spacing'),
+    gap: (theme) => theme('spacing'),
     gridTemplateColumns: {
       none: 'none',
       1: 'repeat(1, minmax(0, 1fr))',
@@ -707,12 +724,26 @@ module.exports = {
     alignSelf: ['responsive'],
     appearance: ['responsive'],
     backgroundAttachment: ['responsive'],
-    backgroundColor: ['responsive', 'hover', 'focus', 'active', 'group-focus', 'group-hover'],
+    backgroundColor: [
+      'responsive',
+      'hover',
+      'focus',
+      'active',
+      'group-focus',
+      'group-hover',
+    ],
     backgroundPosition: ['responsive'],
     backgroundRepeat: ['responsive'],
     backgroundSize: ['responsive'],
     borderCollapse: ['responsive'],
-    borderColor: ['responsive', 'hover', 'focus', 'active', 'group-focus', 'group-hover'],
+    borderColor: [
+      'responsive',
+      'hover',
+      'focus',
+      'active',
+      'group-focus',
+      'group-hover',
+    ],
     borderRadius: ['responsive', 'focus', 'first', 'last'],
     borderStyle: ['responsive', 'focus'],
     borderWidth: ['responsive', 'focus', 'first', 'last'],

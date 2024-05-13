@@ -20,7 +20,7 @@ const StudyListFilter = ({
   const { t } = useTranslation('StudyList');
   const { sortBy, sortDirection } = filterValues;
   const filterSorting = { sortBy, sortDirection };
-  const setFilterSorting = sortingValues => {
+  const setFilterSorting = (sortingValues) => {
     onChange({
       ...filterValues,
       ...sortingValues,
@@ -31,17 +31,15 @@ const StudyListFilter = ({
   return (
     <React.Fragment>
       <div>
-        <div className="bg-black">
+        <div className="border-primary-dark border-b-2">
           <div className="container relative mx-auto flex flex-col pt-5">
             <div className="mb-5 flex flex-row justify-between">
               <div className="flex min-w-[1px] shrink flex-row items-center gap-6">
-                <Typography
-                  variant="h6"
-                  className="text-white"
-                >
+                <Typography variant="h6" className="text-primary-dark">
                   {t('StudyList')}
                 </Typography>
-                {getDataSourceConfigurationComponent && getDataSourceConfigurationComponent()}
+                {getDataSourceConfigurationComponent &&
+                  getDataSourceConfigurationComponent()}
                 {onUploadClick && (
                   <div
                     className="text-primary-active flex cursor-pointer items-center gap-2 self-center text-lg font-semibold"
@@ -58,7 +56,7 @@ const StudyListFilter = ({
                   <LegacyButton
                     rounded="full"
                     variant="outlined"
-                    color="primaryActive"
+                    color="primary active"
                     border="primaryActive"
                     className="mx-8"
                     startIcon={<Icon name="cancel" />}
@@ -67,15 +65,12 @@ const StudyListFilter = ({
                     {t('ClearFilters')}
                   </LegacyButton>
                 )}
-                <Typography
-                  variant="h6"
-                  className="text-primary-light"
-                >
+                <Typography variant="h6" className="text-primary-dark">
                   {`${t('Number of studies')}: `}
                 </Typography>
                 <Typography
                   variant="h6"
-                  className="mr-2"
+                  className="text-primary-dark mr-2"
                   data-cy={'num-studies'}
                 >
                   {numOfStudies > 100 ? '>100' : numOfStudies}
@@ -85,8 +80,8 @@ const StudyListFilter = ({
           </div>
         </div>
       </div>
-      <div className="sticky -top-1 z-10 mx-auto border-b-4 border-black">
-        <div className="bg-primary-dark pt-3 pb-3">
+      <div className="sticky -top-1 z-10 mx-auto border-primary-dark border-b-2">
+        <div className="pt-3 pb-3">
           <InputGroup
             inputMeta={filtersMeta}
             values={filterValues}
@@ -99,7 +94,9 @@ const StudyListFilter = ({
         {numOfStudies > 100 && (
           <div className="container m-auto">
             <div className="bg-primary-main rounded-b py-1 text-center text-base">
-              <p className="text-white">{t('Filter list to 100 studies or less to enable sorting')}</p>
+              <p className="text-primary-dark">
+                {t('Filter list to 100 studies or less to enable sorting')}
+              </p>
             </div>
           </div>
         )}
@@ -116,10 +113,12 @@ StudyListFilter.propTypes = {
       /** Friendly label for filter field */
       displayName: PropTypes.string.isRequired,
       /** One of the supported filter field input types */
-      inputType: PropTypes.oneOf(['Text', 'MultiSelect', 'DateRange', 'None']).isRequired,
+      inputType: PropTypes.oneOf(['Text', 'MultiSelect', 'DateRange', 'None'])
+        .isRequired,
       isSortable: PropTypes.bool.isRequired,
       /** Size of filter field in a 12-grid system */
-      gridCol: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]).isRequired,
+      gridCol: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+        .isRequired,
       /** Options for a "MultiSelect" inputType */
       option: PropTypes.arrayOf(
         PropTypes.shape({

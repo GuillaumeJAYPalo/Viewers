@@ -5,18 +5,15 @@ import getGridWidthClass from '../../utils/getGridWidthClass';
 
 import Icon from '../Icon';
 
-const StudyListTableRow = props => {
+const StudyListTableRow = (props) => {
   const { tableData } = props;
   const { row, expandedContent, onClickRow, isExpanded, dataCY } = tableData;
   return (
     <>
-      <tr
-        className="select-none"
-        data-cy={dataCY}
-      >
+      <tr className="select-none" data-cy={dataCY}>
         <td
           className={classnames('border-0 p-0', {
-            'border-secondary-light bg-primary-dark border-b': isExpanded,
+            'border-secondary-light border-b': isExpanded,
           })}
         >
           <div
@@ -35,11 +32,11 @@ const StudyListTableRow = props => {
               <tbody>
                 <tr
                   className={classnames(
-                    'hover:bg-secondary-main cursor-pointer transition duration-300',
+                    'hover:bg-secondary-active cursor-pointer transition duration-300',
                     {
-                      'bg-primary-dark': !isExpanded,
+                      'bg-primary-light': !isExpanded,
                     },
-                    { 'bg-secondary-dark': isExpanded }
+                    { 'bg-secondary-light': isExpanded }
                   )}
                   onClick={onClickRow}
                 >
@@ -62,13 +59,18 @@ const StudyListTableRow = props => {
                           {index === 0 && (
                             <div>
                               <Icon
-                                name={isExpanded ? 'chevron-down' : 'chevron-right'}
+                                name={
+                                  isExpanded ? 'chevron-down' : 'chevron-right'
+                                }
                                 className="mr-4 inline-flex"
                               />
                             </div>
                           )}
                           <div
-                            className={classnames({ 'overflow-hidden': true }, { truncate: true })}
+                            className={classnames(
+                              { 'overflow-hidden': true },
+                              { truncate: true }
+                            )}
                           >
                             {content}
                           </div>
@@ -78,7 +80,7 @@ const StudyListTableRow = props => {
                   })}
                 </tr>
                 {isExpanded && (
-                  <tr className="max-h-0 w-full select-text overflow-hidden bg-black">
+                  <tr className="max-h-0 w-full select-text overflow-hidden">
                     <td colSpan={row.length}>{expandedContent}</td>
                   </tr>
                 )}

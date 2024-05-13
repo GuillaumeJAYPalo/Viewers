@@ -20,7 +20,7 @@ const TooltipClipboard = ({ children, text }) => {
   const tooltipBoxRef = useRef(null);
   const tooltipContainerRef = useRef(null);
 
-  const copyToClipboard = async text => {
+  const copyToClipboard = async (text) => {
     setIsCopying(true);
     try {
       await navigator.clipboard.writeText(text);
@@ -43,7 +43,7 @@ const TooltipClipboard = ({ children, text }) => {
     setIsCopying(false);
   };
 
-  const resetTimeout = timeOut => {
+  const resetTimeout = (timeOut) => {
     if (timeOut.current !== null) {
       clearTimeout(timeOut.current);
     }
@@ -60,7 +60,7 @@ const TooltipClipboard = ({ children, text }) => {
     }
   };
 
-  const handleMouseOut = e => {
+  const handleMouseOut = (e) => {
     resetTimeout(timeoutShow);
 
     if (isActive && !isCopying) {
@@ -112,7 +112,7 @@ const TooltipClipboard = ({ children, text }) => {
     };
   }, [isActive]);
 
-  const onClickHandler = e => {
+  const onClickHandler = (e) => {
     e.stopPropagation();
     copyToClipboard(text || children);
   };
@@ -141,17 +141,7 @@ const TooltipClipboard = ({ children, text }) => {
             'bg-primary-dark border-secondary-main relative flex items-center rounded border px-2 py-2 text-base text-white'
           )}
         >
-          {message || (
-            <>
-              {children}
-              <div className="border-secondary-light ml-2 border-l pl-2">
-                <Icon
-                  name="clipboard"
-                  className="w-4 text-white"
-                />
-              </div>
-            </>
-          )}
+          {message || <>{children}</>}
         </div>
       </div>
     </div>

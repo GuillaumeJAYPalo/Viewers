@@ -21,7 +21,7 @@ const StudyItem = ({
   return (
     <div
       className={classnames(
-        isActive ? 'bg-secondary-dark' : 'hover:bg-secondary-main bg-black',
+        isActive ? 'bg-secondary-dark' : 'hover:bg-secondary-main bg-white',
         baseClasses
       )}
       onClick={onClick}
@@ -33,16 +33,17 @@ const StudyItem = ({
         <div className="flex flex-row items-center justify-between pt-2 pb-2">
           <div className="text-base text-white">{date}</div>
           <div className="flex flex-row items-center text-base text-blue-300">
-            <Icon
-              name="group-layers"
-              className="mx-2 w-4 text-blue-300"
-            />
+            <Icon name="group-layers" className="mx-2 w-4 text-blue-300" />
             {numInstances}
           </div>
         </div>
         <div className="flex flex-row items-center py-1">
-          <div className="text-l flex items-center pr-5 text-blue-300">{modalities}</div>
-          <div className="flex items-center break-words text-base text-blue-300">{description}</div>
+          <div className="text-l flex items-center pr-5 text-blue-300">
+            {modalities}
+          </div>
+          <div className="flex items-center break-words text-base text-blue-300">
+            {description}
+          </div>
         </div>
       </div>
       {!!trackedSeries && (
@@ -55,10 +56,7 @@ const StudyItem = ({
                 : 'mx-4 mb-4 rounded-sm'
             )}
           >
-            <Icon
-              name="tracked"
-              className="text-primary-light mr-2 w-4"
-            />
+            <Icon name="tracked" className="text-primary-light mr-2 w-4" />
             {t('Tracked series', { trackedSeries: trackedSeries })}
           </div>
         </div>
