@@ -43,6 +43,7 @@ const classes = {
   },
   color: {
     initial: 'text-white',
+    dark: 'text-primary-dark',
     inherit: 'text-inherit',
     primary: 'text-primary-main',
     primaryActive: 'text-primary-active',
@@ -88,7 +89,8 @@ const Typography = ({
   className,
   ...rest
 }) => {
-  const Component = component || (paragraph ? 'p' : defaultVariantMapping[variant]) || 'span';
+  const Component =
+    component || (paragraph ? 'p' : defaultVariantMapping[variant]) || 'span';
   return (
     <Component
       className={classnames(

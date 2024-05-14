@@ -12,19 +12,21 @@ const sizeClasses = {
 const layoutClasses =
   'box-content inline-flex flex-row items-center justify-center gap-[5px] justify center px-[10px] outline-none rounded';
 
-const baseFontTextClasses = 'leading-[1.2] font-sans text-center whitespace-nowrap';
+const baseFontTextClasses =
+  'leading-[1.2] font-sans text-center whitespace-nowrap';
 
 const fontTextClasses = {
   [ButtonEnums.type.primary]: classnames(baseFontTextClasses, 'font-semibold'),
   [ButtonEnums.type.secondary]: classnames(baseFontTextClasses, 'font-400'),
 };
 
-const baseEnabledEffectClasses = 'transition duration-300 ease-in-out focus:outline-none';
+const baseEnabledEffectClasses =
+  'transition duration-300 ease-in-out focus:outline-none';
 
 const enabledEffectClasses = {
   [ButtonEnums.type.primary]: classnames(
     baseEnabledEffectClasses,
-    'hover:bg-customblue-80 active:bg-customblue-40'
+    'hover:bg-gradient-primary active:bg-customblue-40'
   ),
   [ButtonEnums.type.secondary]: classnames(
     baseEnabledEffectClasses,
@@ -36,7 +38,7 @@ const baseEnabledClasses = 'text-white';
 
 const enabledClasses = {
   [ButtonEnums.type.primary]: classnames(
-    'bg-primary-main',
+    'bg-secondary-main',
     baseEnabledClasses,
     enabledEffectClasses[ButtonEnums.type.primary]
   ),
@@ -47,7 +49,8 @@ const enabledClasses = {
   ),
 };
 
-const disabledClasses = 'bg-inputfield-placeholder text-common-light cursor-default';
+const disabledClasses =
+  'bg-inputfield-placeholder text-common-light cursor-default border-solid border-2 border-inputfield-placeholder';
 
 const defaults = {
   color: 'default',
@@ -76,7 +79,10 @@ const Button = ({
   const startIcon = startIconProp && (
     <>
       {React.cloneElement(startIconProp, {
-        className: classnames('w-4 h-4 fill-current', startIconProp?.props?.className),
+        className: classnames(
+          'w-4 h-4 fill-current',
+          startIconProp?.props?.className
+        ),
       })}
     </>
   );
@@ -84,13 +90,16 @@ const Button = ({
   const endIcon = endIconProp && (
     <>
       {React.cloneElement(endIconProp, {
-        className: classnames('w-4 h-4 fill-current', endIconProp?.props?.className),
+        className: classnames(
+          'w-4 h-4 fill-current',
+          endIconProp?.props?.className
+        ),
       })}
     </>
   );
   const buttonElement = useRef(null);
 
-  const handleOnClick = e => {
+  const handleOnClick = (e) => {
     buttonElement.current.blur();
     if (!disabled) {
       onClick(e);
@@ -114,9 +123,17 @@ const Button = ({
       onClick={handleOnClick}
       data-cy={dataCY}
     >
-      {startIconTooltip ? <Tooltip content={startIconTooltip}>{startIcon}</Tooltip> : startIcon}
+      {startIconTooltip ? (
+        <Tooltip content={startIconTooltip}>{startIcon}</Tooltip>
+      ) : (
+        startIcon
+      )}
       {children}
-      {endIconTooltip ? <Tooltip content={endIconTooltip}>{endIcon}</Tooltip> : endIcon}
+      {endIconTooltip ? (
+        <Tooltip content={endIconTooltip}>{endIcon}</Tooltip>
+      ) : (
+        endIcon
+      )}
     </button>
   );
 };

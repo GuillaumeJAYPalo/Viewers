@@ -25,7 +25,8 @@ module.exports = {
       xl: '1280px',
     },
     backgroundImage: {
-      'linear-gradient': '(90deg,#645dbf,#cd35ed)',
+      'gradient-primary':
+        'linear-gradient(to right, rgba(100, 93, 191, 1), rgba(205, 53, 237, 1))',
     },
     colors: {
       overlay: 'rgba(0, 0, 0, 0.8)',
@@ -57,8 +58,7 @@ module.exports = {
         main: '#3a3f99',
         disabled: '#2b166b',
         focus: '#5acce6',
-        //Allisone Free Speech Blue
-        placeholder: '#475bc0',
+        placeholder: '#348cfd',
       },
 
       secondary: {

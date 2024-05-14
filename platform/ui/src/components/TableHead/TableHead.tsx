@@ -6,7 +6,7 @@ const TableHead = ({ children, className, style }) => {
   return (
     <div
       className={classnames(
-        'bg-secondary-dark border-secondary-light flex border-b pr-2 font-bold',
+        'bg-primary-light border-secondary-light flex border-b pr-2 font-bold',
         className
       )}
       style={style}
@@ -28,7 +28,7 @@ TableHead.defaultProps = {
 TableHead.propTypes = {
   children: function (props, propName, componentName) {
     const elements = React.Children.toArray(props.children);
-    const isString = elements.some(child => typeof child === 'string');
+    const isString = elements.some((child) => typeof child === 'string');
 
     if (isString) {
       return new Error(
@@ -36,7 +36,9 @@ TableHead.propTypes = {
       );
     }
 
-    const isInvalidElement = elements.some(child => !React.isValidElement(child));
+    const isInvalidElement = elements.some(
+      (child) => !React.isValidElement(child)
+    );
 
     if (isInvalidElement) {
       return new Error(

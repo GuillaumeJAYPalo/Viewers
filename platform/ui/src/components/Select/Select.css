@@ -1,5 +1,5 @@
 .customSelect__wrapper .customSelect__control {
-  @apply border-secondary-light w-full rounded border bg-black text-sm leading-tight text-white shadow transition duration-300;
+  @apply border-secondary-light w-full rounded border bg-gradient-primary text-sm leading-tight text-white shadow transition duration-300;
   min-height: 28px;
 }
 .customSelect__wrapper .customSelect__control:hover {
@@ -40,7 +40,7 @@
 }
 
 .customSelect__wrapper .customSelect__single-value {
-  @apply text-aqua-pale pl-1;
+  @apply text-white pl-1;
   max-width: calc(100% - 20px);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -71,7 +71,7 @@
   border-radius: 10px;
 }
 .ohif-select .customSelect__placeholder {
-  @apply text-aqua-pale pl-1.5;
+  @apply text-white pl-1.5;
 }
 
 .ohif-select .customSelect__menu-list::-webkit-scrollbar-thumb {
@@ -80,7 +80,7 @@
 }
 
 .customSelect__option--is-focused {
-  background-color: #0944b391 !important;
+  background-color: #645dbf !important;
 }
 
 .ohif-select .customSelect__option:hover {
@@ -90,7 +90,7 @@
 .ohif-select .customSelect__menu {
   border: 2px solid #0944b3;
   border-radius: 6px;
-  background-color: #151515 !important;
+  background-color: white !important;
 }
 
 .css-1hwfws3 {

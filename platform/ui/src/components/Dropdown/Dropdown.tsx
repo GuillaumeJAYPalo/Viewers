@@ -58,7 +58,7 @@ const Dropdown = ({
           }}
           data-cy={id}
         >
-          {!!icon && <Icon name={icon} className="mr-2 w-4 text-white" />}
+          {!!icon && <Icon name={icon} className="mr-2 w-4" />}
           <div
             style={{
               whiteSpace: 'nowrap',
@@ -67,14 +67,20 @@ const Dropdown = ({
             {title.length > maxCharactersPerLine && (
               <div>
                 {lines.map((line, index) => (
-                  <Typography key={index} className={itemsClassName}>
+                  <Typography
+                    key={index}
+                    className={itemsClassName}
+                    color="dark"
+                  >
                     {line}
                   </Typography>
                 ))}
               </div>
             )}
             {title.length <= maxCharactersPerLine && (
-              <Typography className={itemsClassName}>{title}</Typography>
+              <Typography className={itemsClassName} color="dark">
+                {title}
+              </Typography>
             )}
           </div>
         </div>
@@ -132,7 +138,7 @@ const Dropdown = ({
     const listElement = (
       <div
         className={classnames(
-          'top-100 border-secondary-main w-max-content absolute mt-2 transform rounded border bg-secondary-light shadow transition duration-300',
+          'top-100 border-secondary-main w-max-content absolute mt-2 transform rounded border bg-primary-light shadow transition duration-300',
           {
             'right-0 origin-top-right': alignment === 'right',
             'left-0 origin-top-left': alignment === 'left',
