@@ -20,10 +20,7 @@ const baseClasses = {
 
 const classes = {
   Button: ({ isExpanded }) =>
-    classNames(
-      baseClasses.Button,
-      !isExpanded && 'hover:!bg-primary-dark hover:border-primary-dark'
-    ),
+    classNames(baseClasses.Button, !isExpanded && 'hover:border-primary-dark'),
   Interface: 'h-full flex flex-row items-center',
   Primary: ({ isExpanded, isActive }) =>
     classNames(
@@ -53,12 +50,15 @@ const classes = {
   Separator: ({ primary, isExpanded, isHovering }) =>
     classNames(
       baseClasses.Separator,
-      isHovering || isExpanded || primary.isActive ? 'border-transparent' : 'border-primary-active'
+      isHovering || isExpanded || primary.isActive
+        ? 'border-transparent'
+        : 'border-primary-main'
     ),
-  Content: ({ isExpanded }) => classNames(baseClasses.Content, isExpanded ? 'block' : 'hidden'),
+  Content: ({ isExpanded }) =>
+    classNames(baseClasses.Content, isExpanded ? 'block' : 'hidden'),
 };
 
-const DefaultListItemRenderer = props => {
+const DefaultListItemRenderer = (props) => {
   const { t, icon, label, className, isActive } = props;
   return (
     <div
@@ -71,10 +71,7 @@ const DefaultListItemRenderer = props => {
     >
       {icon && (
         <span className="mr-4">
-          <Icon
-            name={icon}
-            className="h-[28px] w-[28px]"
-          />
+          <Icon name={icon} className="h-[28px] w-[28px]" />
         </span>
       )}
       <span className="mr-5">{t?.(label)}</span>
@@ -98,8 +95,9 @@ const SplitButton = ({
   const { t } = useTranslation('Buttons');
   const [state, setState] = useState({ isHovering: false, isExpanded: false });
 
-  const toggleExpanded = () => setState({ ...state, isExpanded: !state.isExpanded });
-  const setHover = hovering => setState({ ...state, isHovering: hovering });
+  const toggleExpanded = () =>
+    setState({ ...state, isExpanded: !state.isExpanded });
+  const setHover = (hovering) => setState({ ...state, isHovering: hovering });
   const collapse = () => setState({ ...state, isExpanded: false });
 
   const listItemRenderer = renderer || DefaultListItemRenderer;
@@ -111,14 +109,8 @@ const SplitButton = ({
     primary.className
   );
   return (
-    <OutsideClickHandler
-      onOutsideClick={collapse}
-      disabled={!state.isExpanded}
-    >
-      <div
-        id="SplitButton"
-        className="relative"
-      >
+    <OutsideClickHandler onOutsideClick={collapse} disabled={!state.isExpanded}>
+      <div id="SplitButton" className="relative">
         <div
           className={classes.Button({ ...state })}
           style={{ height: '40px' }}
@@ -163,7 +155,7 @@ const SplitButton = ({
           <ListMenu
             items={items}
             onClick={collapse}
-            renderer={args => listItemRenderer({ ...args, t })}
+            renderer={(args) => listItemRenderer({ ...args, t })}
           />
         </div>
       </div>

@@ -49,7 +49,7 @@ function Header({
             {isReturnEnabled && (
               <Icon name="chevron-left" className="text-primary-active w-8" />
             )}
-            <div className="pl-20">
+            <div className="pl-20 pr-10">
               <img
                 src={AllisonLogo}
                 alt="Logo Allisone"

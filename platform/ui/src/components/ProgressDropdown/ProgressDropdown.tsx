@@ -1,11 +1,21 @@
-import React, { ReactNode, useEffect, useCallback, useState, useMemo, useRef } from 'react';
+import React, {
+  ReactNode,
+  useEffect,
+  useCallback,
+  useState,
+  useMemo,
+  useRef,
+} from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ProgressDiscreteBar from './ProgressDiscreteBar';
 import ProgressItemDetail from './ProgressItemDetail';
 import ProgressItem from './ProgressItem';
 import { Icon } from '../../components';
-import { ProgressDropdownOption, ProgressDropdownOptionPropType } from './types';
+import {
+  ProgressDropdownOption,
+  ProgressDropdownOptionPropType,
+} from './types';
 
 const ProgressDropdown = ({
   options: optionsProps,
@@ -21,12 +31,12 @@ const ProgressDropdown = ({
 }): JSX.Element => {
   const element = useRef(null);
   const [open, setOpen] = useState(false);
-  const toggleOpen = () => setOpen(s => !s);
+  const toggleOpen = () => setOpen((s) => !s);
   const [options, setOptions] = useState(optionsProps);
   const [selectedOption, setSelectedOption] = useState(undefined);
 
   const selectedOptionIndex = useMemo(
-    () => options.findIndex(option => option.value === selectedOption?.value),
+    () => options.findIndex((option) => option.value === selectedOption?.value),
     [options, selectedOption]
   );
 
@@ -71,14 +81,16 @@ const ProgressDropdown = ({
       return;
     }
 
-    const newOption = value ? options.find(option => option.value === value) : undefined;
+    const newOption = value
+      ? options.find((option) => option.value === value)
+      : undefined;
 
     handleOptionSelected(newOption);
   }, [value, options, handleOptionSelected]);
 
   // Listen to any click event outside of the dropdown context to hide the options
   useEffect(() => {
-    const handleDocumentClick = e => {
+    const handleDocumentClick = (e) => {
       if (element.current && !element.current.contains(e.target)) {
         setOpen(false);
       }
@@ -97,7 +109,7 @@ const ProgressDropdown = ({
       className="relative grow select-none text-[0px] text-white"
     >
       <div>
-        <div className="mb-1.5 flex h-[26px]">
+        <div className="pl-10 mb-1.5 flex h-[26px]">
           <div
             className="bg-secondary-dark border-primary-main flex grow cursor-pointer rounded border"
             style={{ width: `${dropDownWidth}px` }}
@@ -106,7 +118,9 @@ const ProgressDropdown = ({
             <div className="flex grow">
               {selectedOption && <ProgressItemDetail option={selectedOption} />}
 
-              {!selectedOption && <div className="ml-1 grow text-base leading-6">{children}</div>}
+              {!selectedOption && (
+                <div className="ml-1 grow text-base leading-6">{children}</div>
+              )}
             </div>
             <Icon
               name="chevron-down"
@@ -149,7 +163,7 @@ const ProgressDropdown = ({
           ))}
         </div>
 
-        <div>
+        <div className="pl-10">
           <ProgressDiscreteBar options={options} />
         </div>
       </div>

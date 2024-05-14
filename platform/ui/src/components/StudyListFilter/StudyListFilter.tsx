@@ -35,14 +35,18 @@ const StudyListFilter = ({
           <div className="container relative mx-auto flex flex-col pt-5">
             <div className="mb-5 flex flex-row justify-between">
               <div className="flex min-w-[1px] shrink flex-row items-center gap-6">
-                <Typography variant="h6" className="text-primary-dark">
+                <Typography
+                  component="h1"
+                  variant="h2"
+                  className="text-primary-dark"
+                >
                   {t('StudyList')}
                 </Typography>
                 {getDataSourceConfigurationComponent &&
                   getDataSourceConfigurationComponent()}
                 {onUploadClick && (
                   <div
-                    className="text-primary-active flex cursor-pointer items-center gap-2 self-center text-lg font-semibold"
+                    className="text-primary-active flex cursor-pointer items-center gap-2 self-center text-lg font-semibold ml-20 mt-5"
                     onClick={onUploadClick}
                   >
                     <Icon name="icon-upload"></Icon>
@@ -58,19 +62,24 @@ const StudyListFilter = ({
                     variant="outlined"
                     color="primary active"
                     border="primaryActive"
-                    className="mx-8"
+                    className="mx-8 mt-10"
                     startIcon={<Icon name="cancel" />}
                     onClick={clearFilters}
                   >
                     {t('ClearFilters')}
                   </LegacyButton>
                 )}
-                <Typography variant="h6" className="text-primary-dark">
+                <Typography
+                  component="h2"
+                  variant="h5"
+                  className="text-primary-dark mt-10"
+                >
                   {`${t('Number of studies')}: `}
                 </Typography>
                 <Typography
-                  variant="h6"
-                  className="text-primary-dark mr-2"
+                  component="h2"
+                  variant="h5"
+                  className="text-primary-dark mr-10 mt-10"
                   data-cy={'num-studies'}
                 >
                   {numOfStudies > 100 ? '>100' : numOfStudies}
