@@ -24,6 +24,9 @@ module.exports = {
       lg: '1024px',
       xl: '1280px',
     },
+    backgroundImage: {
+      'linear-gradient': '(90deg,#645dbf,#cd35ed)',
+    },
     colors: {
       overlay: 'rgba(0, 0, 0, 0.8)',
       transparent: 'transparent',
@@ -41,7 +44,8 @@ module.exports = {
 
       primary: {
         //Item line
-        light: '#fff',
+        //Allisone Lavender
+        light: '#e7e5fb',
         main: '#fff',
         //Allisone Deep blue
         dark: '#02042d',
@@ -58,7 +62,7 @@ module.exports = {
       },
 
       secondary: {
-        //Allisone Lavender
+        //Allisone Glossy Pinky 21
         //Item border line
         light: '#cd35ed',
         //Allisone Medium Purple

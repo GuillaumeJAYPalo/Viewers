@@ -50,7 +50,7 @@ const StudyListFilter = ({
                   </div>
                 )}
               </div>
-              <div className="flex h-[34px] flex-row items-center">
+              <div className="flex h-[34px] flex-row items-center bg-white">
                 {/* TODO revisit the completely rounded style of button used for clearing the study list filter - for now use LegacyButton*/}
                 {isFiltering && (
                   <LegacyButton
@@ -80,7 +80,7 @@ const StudyListFilter = ({
           </div>
         </div>
       </div>
-      <div className="sticky -top-1 z-10 mx-auto border-primary-dark border-b-2">
+      <div className="sticky -top-1 z-10 mx-auto border-primary-dark border-b-2 bg-white">
         <div className="pt-3 pb-3">
           <InputGroup
             inputMeta={filtersMeta}

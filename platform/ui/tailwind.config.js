@@ -17,6 +17,9 @@ module.exports = {
       nexa: ['Nexa', 'sans-serif'],
       // inter: ['Inter', 'sans-serif'],
     },
+    backgroundImage: {
+      'linear-gradient': '(90deg,#645dbf,#cd35ed)',
+    },
     colors: {
       overlay: 'rgba(0, 0, 0, 0.8)',
       transparent: 'transparent',
@@ -48,11 +51,13 @@ module.exports = {
       },
 
       secondary: {
-        //Allisone Lavender
-        light: '#e7e5fb',
+        //Allisone Glossy Pinky 21
+        //Item border line
+        light: '#cd35ed',
         //Allisone Medium Purple
         main: '#b16cea',
         dark: '#5532fa',
+        //Allisone Medium Purple
         active: '#b16cea',
       },
 

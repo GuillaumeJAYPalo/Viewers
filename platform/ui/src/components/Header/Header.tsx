@@ -49,7 +49,7 @@ function Header({
             {isReturnEnabled && (
               <Icon name="chevron-left" className="text-primary-active w-8" />
             )}
-            <div className="ml-1">
+            <div className="pl-20">
               <img
                 src={AllisonLogo}
                 alt="Logo Allisone"
@@ -76,7 +76,7 @@ function Header({
             />
           )}
           <div className="border-primary-dark mx-1.5 h-[25px] border-r"></div>
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 pr-20">
             <Dropdown
               id="options"
               showDropdownIcon={false}
@@ -88,7 +88,7 @@ function Header({
                 variant="text"
                 color="inherit"
                 size="initial"
-                className="text-primary-active hover:bg-primary-dark h-full w-full"
+                className="text-primary-light hover:bg-linear-gradient h-full w-full"
               >
                 <Icon name="icon-settings" />
               </IconButton>
