@@ -22,7 +22,7 @@ const Viewer = () => {
           >
             <StudyBrowser />
           </LegacySidePanel>
-          <div className="h-100 bg-primary-main flex flex-1 items-center justify-center overflow-hidden text-white">
+          <div className="h-100 bg-primary-main flex flex-1 items-center justify-center overflow-hidden text-primary-dark">
             {/* <ViewportToolbar /> */}
             <div>CONTENT</div>
           </div>
@@ -33,7 +33,9 @@ const Viewer = () => {
             componentLabel="Measurements"
             defaultIsOpen={false}
           >
-            <div className="flex justify-center p-2 text-white">panel placeholder</div>
+            <div className="flex justify-center p-2 text-primary-dark">
+              panel placeholder
+            </div>
           </LegacySidePanel>
         </div>
       </div>

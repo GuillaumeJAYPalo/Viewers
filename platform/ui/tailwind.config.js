@@ -57,8 +57,8 @@ module.exports = {
         //Allisone Medium Purple
         main: '#b16cea',
         dark: '#5532fa',
-        //Allisone Medium Purple
-        active: '#b16cea',
+        //Allisone Malibu
+        active: '#78b0e3',
       },
 
       common: {

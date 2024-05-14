@@ -26,10 +26,6 @@ body {
   background-color: #ffff;
 }
 
-* {
-  @apply text-primary-dark;
-}
-
 /* Truncate 2 lines utility */
 .truncate-2-lines {
   overflow: hidden;

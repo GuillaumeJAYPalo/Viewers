@@ -4,8 +4,10 @@ import classnames from 'classnames';
 
 import Icon from '../Icon';
 
-const baseLabelClassName = 'flex flex-col flex-1 text-white text-lg pl-1 select-none';
-const spanClassName = 'flex flex-row items-center cursor-pointer focus:outline-none';
+const baseLabelClassName =
+  'flex flex-col flex-1 text-primary-dark text-lg pl-1 select-none';
+const spanClassName =
+  'flex flex-row items-center cursor-pointer focus:outline-none';
 const sortIconMap = {
   descending: 'sorting-active-up',
   ascending: 'sorting-active-down',
@@ -20,7 +22,7 @@ const InputLabelWrapper = ({
   className,
   children,
 }) => {
-  const onClickHandler = e => {
+  const onClickHandler = (e) => {
     if (!isSortable) {
       return;
     }
@@ -43,7 +45,7 @@ const InputLabelWrapper = ({
             name={sortIconMap[sortDirection]}
             className={classnames(
               'mx-2 w-2',
-              sortDirection !== 'none' ? 'text-primary-light' : 'text-primary-main'
+              sortDirection !== 'none' ? 'text-primary-dark' : 'text-gray-500'
             )}
           />
         )}
@@ -60,7 +62,8 @@ InputLabelWrapper.defaultProps = {
 InputLabelWrapper.propTypes = {
   label: PropTypes.string.isRequired,
   isSortable: PropTypes.bool.isRequired,
-  sortDirection: PropTypes.oneOf(['ascending', 'descending', 'none']).isRequired,
+  sortDirection: PropTypes.oneOf(['ascending', 'descending', 'none'])
+    .isRequired,
   onLabelClick: PropTypes.func.isRequired,
   className: PropTypes.string,
   children: PropTypes.node,

@@ -155,8 +155,10 @@ const Tooltip = ({
         )}
       >
         <div>{typeof content === 'string' ? t(content) : content}</div>
-        <div className="text-aqua-pale">
-          {typeof secondaryContent === 'string' ? t(secondaryContent) : secondaryContent}
+        <div className="text-gray-500">
+          {typeof secondaryContent === 'string'
+            ? t(secondaryContent)
+            : secondaryContent}
         </div>
         <svg
           className="text-primary-dark stroke-secondary-light absolute h-4"
@@ -164,10 +166,7 @@ const Tooltip = ({
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
         >
-          <path
-            fill="currentColor"
-            d="M24 22l-12-20l-12 20"
-          />
+          <path fill="currentColor" d="M24 22l-12-20l-12 20" />
         </svg>
       </div>
     </div>
@@ -184,7 +183,8 @@ const Tooltip = ({
       role="tooltip"
     >
       {children}
-      {tooltipContainer && ReactDOM.createPortal(tooltipContent, tooltipContainer)}
+      {tooltipContainer &&
+        ReactDOM.createPortal(tooltipContent, tooltipContainer)}
     </div>
   );
 };
@@ -201,7 +201,14 @@ Tooltip.propTypes = {
   isDisabled: PropTypes.bool,
   content: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   secondaryContent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-  position: PropTypes.oneOf(['bottom', 'bottom-left', 'bottom-right', 'left', 'right', 'top']),
+  position: PropTypes.oneOf([
+    'bottom',
+    'bottom-left',
+    'bottom-right',
+    'left',
+    'right',
+    'top',
+  ]),
   isSticky: PropTypes.bool,
   tight: PropTypes.bool,
   children: PropTypes.node.isRequired,
