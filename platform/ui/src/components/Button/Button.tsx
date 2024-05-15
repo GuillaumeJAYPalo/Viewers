@@ -15,7 +15,7 @@ const layoutClasses =
 const baseFontTextClasses = 'leading-[1.2] text-center whitespace-nowrap';
 
 const fontTextClasses = {
-  [ButtonEnums.type.primary]: classnames(baseFontTextClasses, 'font-semibold'),
+  [ButtonEnums.type.primary]: classnames(baseFontTextClasses),
   [ButtonEnums.type.secondary]: classnames(baseFontTextClasses, 'font-400'),
 };
 

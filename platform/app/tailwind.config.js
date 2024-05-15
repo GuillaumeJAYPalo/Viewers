@@ -27,6 +27,8 @@ module.exports = {
     backgroundImage: {
       'gradient-primary':
         'linear-gradient(to right, rgba(100, 93, 191, 1), rgba(205, 53, 237, 1))',
+      'gradient-pastel':
+        'linear-gradient(to right, rgba(251,194,235,1), rgba(108,116,234,1), rgba(217,252,228,1))',
     },
     colors: {
       overlay: 'rgba(0, 0, 0, 0.8)',

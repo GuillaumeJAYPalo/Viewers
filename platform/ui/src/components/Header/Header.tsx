@@ -36,7 +36,7 @@ function Header({
 
   return (
     <NavBar isSticky={isSticky} {...props}>
-      <div className="relative h-[72px] items-center bg-white">
+      <div className="relative h-[72px] items-center bg-gradient-pastel">
         <div className="absolute left-0 top-1/2 flex -translate-y-1/2 items-center">
           <div
             className={classNames(
