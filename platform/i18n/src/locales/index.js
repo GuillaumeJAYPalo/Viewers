@@ -12,16 +12,16 @@ import zh from './zh/';
 import test_lng from './test-LNG/';
 
 export default {
-  ...ar,
-  ...tr_TR,
+  /* ...ar,
+  ...tr_TR,*/
   ...de,
   ...en_US,
   ...es,
   ...fr,
-  ...ja_JP,
+  ...ja_JP /*,
   ...nl,
   ...pt_BR,
   ...vi,
   ...zh,
-  ...test_lng,
+  ...test_lng,*/,
 };

@@ -1,0 +1,20 @@
+{
+  "AccessionNumber": "Accession #",
+  "ClearFilters": "Nettoyer filtres",
+  "Description": "Description",
+  "Empty": "Vive",
+  "Filter list to 100 studies or less to enable sorting": "Filter the list to 100 studies or less to enable sorting",
+  "Instances": "Instances",
+  "Modality": "Modalité",
+  "MRN": "MRN",
+  "Next": "Suiv. >",
+  "No studies available": "No studies available",
+  "Number of studies": "Nombre de dossiers",
+  "Page": "Page",
+  "PatientName": "Nom Patient",
+  "Previous": "< Prec.",
+  "Results per page": "Résultat par page",
+  "StudyDate": "Date Dossier",
+  "StudyList": "Liste de dossiers",
+  "Upload": "Upload"
+}
