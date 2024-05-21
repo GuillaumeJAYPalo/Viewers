@@ -88,7 +88,7 @@ function Header({
                 variant="text"
                 color="inherit"
                 size="initial"
-                className="text-primary-light hover:bg-gradient-primary h-full w-full"
+                className="text-primary-dark hover:bg-gradient-primary h-full w-full"
               >
                 <Icon name="icon-settings" />
               </IconButton>
